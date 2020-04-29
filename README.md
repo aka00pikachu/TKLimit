@@ -1,4 +1,4 @@
-# TKLimit
+# TK Limit
 Limits TK in SCP:SL using EXILED
 
 | Option     | Value | Default | Explanation                                           |
