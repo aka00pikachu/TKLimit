@@ -1,0 +1,17 @@
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\TKLimit.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\TKLimit.pdb
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\0Harmony.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\Assembly-CSharp.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\EXILED.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\EXILED_Events.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\EXILED_Idler.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\EXILED_Permissions.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\UnityEngine.CoreModule.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\UnityEngine.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Debug\YamlDotNet.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Debug\TKLimit-EXILED.csprojAssemblyReference.cache
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Debug\TKLimit-EXILED.csproj.CoreCompileInputs.cache
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Debug\TKLimit-EXILED.csproj.CopyComplete
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Debug\TKLimit.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Debug\TKLimit.pdb
