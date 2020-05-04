@@ -15,11 +15,13 @@ namespace TKLimit
 
         internal void OnPlayerDamage(ref PlayerHurtEvent ev)
         {
-            string plrClass = GetPlrClass(ev.Player.GetRole());
-            string atkClass = GetPlrClass(ev.Attacker.GetRole());
-            if (plrClass == atkClass)
+            if (ev.Player.GetTeam() == ev.Attacker.GetTeam())
             {
-                if (Plugin.plrTKs[ev.Attacker.GetPlayerId()] >= Plugin.tkLimit)
+                if (Plugin.area && (Plugin.rooms.Contains(ev.Player.GetCurrentRoom().Name) | Plugin.zones.Contains(getZone(ev.Player.GetCurrentRoom().Name))))
+                {
+                    ev.Player.AddHealth(ev.Amount);
+                }
+                else if (Plugin.plrTKs[ev.Attacker.GetPlayerId()] >= Plugin.tkLimit && Plugin.limiter)
                 {
                     if (ev.Attacker.GetPlayerId() != ev.Player.GetPlayerId())
                     {
@@ -31,9 +33,7 @@ namespace TKLimit
 
         internal void OnPlayerDeath(ref PlayerDeathEvent ev)
         {
-            string plrClass = GetPlrClass(ev.Player.GetRole());
-            string kilClass = GetPlrClass(ev.Killer.GetRole());
-            if (plrClass == kilClass)
+            if (ev.Player.GetTeam() == ev.Killer.GetTeam())
             {
                 if (ev.Killer.GetPlayerId() != ev.Player.GetPlayerId())
                 {
@@ -63,22 +63,14 @@ namespace TKLimit
             Plugin.plrTKs.Remove(ev.Player.GetPlayerId());
         }
 
-        public string GetPlrClass(RoleType plrRole)
+        string getZone(string room)
         {
-            string plrClass = null;
-            if (Plugin.NTF.Contains(plrRole))
+            int index = room.LastIndexOf("_");
+            if (index > 0)
             {
-                plrClass = "NTF";
+                room = room.Substring(0, index);
             }
-            if (Plugin.CHAOS.Contains(plrRole))
-            {
-                plrClass = "CHAOS";
-            }
-            if (Plugin.SCP.Contains(plrRole))
-            {
-                plrClass = "SCP";
-            }
-            return plrClass;
+            return room;
         }
     }
 }

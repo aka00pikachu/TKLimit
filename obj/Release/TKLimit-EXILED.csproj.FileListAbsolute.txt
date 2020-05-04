@@ -1,0 +1,17 @@
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\TKLimit.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\TKLimit.pdb
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\0Harmony.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\Assembly-CSharp-firstpass.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\Assembly-CSharp.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\EXILED.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\EXILED_Events.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\EXILED_Idler.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\EXILED_Permissions.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\UnityEngine.CoreModule.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\UnityEngine.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\bin\Release\YamlDotNet.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Release\TKLimit-EXILED.csprojAssemblyReference.cache
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Release\TKLimit-EXILED.csproj.CoreCompileInputs.cache
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Release\TKLimit-EXILED.csproj.CopyComplete
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Release\TKLimit.dll
+C:\Users\alvar\source\repos\TKLimit\TKLimit-EXILED\obj\Release\TKLimit.pdb
