@@ -17,15 +17,22 @@ namespace TKLimit
         {
             if (ev.Player.GetTeam() == ev.Attacker.GetTeam())
             {
-                if (Plugin.area && (Plugin.rooms.Contains(ev.Player.GetCurrentRoom().Name) | Plugin.zones.Contains(getZone(ev.Player.GetCurrentRoom().Name))))
+                if (!(Plugin.rooms.Contains(ev.Player.GetCurrentRoom().Name) | Plugin.zones.Contains(getZone(ev.Player.GetCurrentRoom().Name))))
+                {
+                    if (Plugin.plrTKs[ev.Attacker.GetPlayerId()] >= Plugin.tkLimit && Plugin.limiter)
+                    {
+                        if (ev.Attacker.GetPlayerId() != ev.Player.GetPlayerId())
+                        {
+                            ev.Player.AddHealth(ev.Amount);
+                        }
+                    }
+                }
+                else
                 {
                     ev.Player.AddHealth(ev.Amount);
-                }
-                else if (Plugin.plrTKs[ev.Attacker.GetPlayerId()] >= Plugin.tkLimit && Plugin.limiter)
-                {
-                    if (ev.Attacker.GetPlayerId() != ev.Player.GetPlayerId())
+                    if (Plugin.room)
                     {
-                        ev.Player.AddHealth(ev.Amount);
+                        ev.Attacker.Broadcast(Plugin.roomtime, Plugin.roombc, false);
                     }
                 }
             }
@@ -38,16 +45,21 @@ namespace TKLimit
                 if (ev.Killer.GetPlayerId() != ev.Player.GetPlayerId())
                 {
                     Plugin.plrTKs[ev.Killer.GetPlayerId()]++;
-                    if (Plugin.log == true)
+                    if (Plugin.plrTKs[ev.Killer.GetPlayerId()] >= Plugin.tkLimit && Plugin.ban)
                     {
-                        if (Plugin.plrTKs[ev.Killer.GetPlayerId()] >= Plugin.tkLimit)
-                        {
-                            Log.Info($"{ev.Killer.GetNickname()} attempted to tk {ev.Player.GetNickname()} as {ev.Killer.GetRole()}");
-                        }
-                        else
-                        {
-                            Log.Info($"{ev.Killer.GetNickname()} has tked {ev.Player.GetNickname()} as {ev.Killer.GetRole()}");
-                        }
+                        ev.Killer.BanPlayer(Plugin.bantime, "TK");
+                    }
+                    if (Plugin.plrTKs[ev.Killer.GetPlayerId()]+1 >= Plugin.tkLimit && Plugin.warning)
+                    {
+                        ev.Killer.Broadcast(Plugin.warningtime, Plugin.warningbc, false);
+                    }
+                    if (Plugin.plrTKs[ev.Killer.GetPlayerId()] >= Plugin.tkLimit && Plugin.max)
+                    {
+                        ev.Killer.Broadcast(Plugin.maxtime, Plugin.maxbc, false);
+                    }
+                    if (Plugin.plrTKs[ev.Killer.GetPlayerId()] < Plugin.tkLimit && Plugin.log == true)
+                    {
+                        Log.Info($"{ev.Killer.GetNickname()} has tked {ev.Player.GetNickname()} as {ev.Killer.GetRole()} in {ev.Killer.GetCurrentRoom().Name}");
                     }
                 }
             }

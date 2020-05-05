@@ -15,7 +15,17 @@ namespace TKLimit
         public static int tkLimit;
         public static bool log;
         public static bool limiter;
-        public static bool area;
+        public static bool ban;
+        public static int bantime;
+        public static bool warning;
+        public static string warningbc;
+        public static uint warningtime;
+        public static bool room;
+        public static string roombc;
+        public static uint roomtime;
+        public static bool max;
+        public static string maxbc;
+        public static uint maxtime;
         public static List<string> rooms;
         public static List<string> zones;
         public Dictionary<int, int> plrTKs = new Dictionary<int, int>();
@@ -38,7 +48,17 @@ namespace TKLimit
             tkLimit = Config.GetInt("tkl_limit", 4);
             log = Config.GetBool("tkl_log", true);
             limiter = Config.GetBool("tkl_limiter", true);
-            area = Config.GetBool("tkl_area", false);
+            ban = Config.GetBool("tkl_ban", false);
+            bantime = Config.GetInt("tkl_bantime", 0);
+            warning = Config.GetBool("tkl_warning", false);
+            warningbc = Config.GetString("tkl_warningbc", "You have one tk left");
+            warningtime = Config.GetUInt("tkl_warningtime", 5);
+            room = Config.GetBool("tkl_room", false);
+            roombc = Config.GetString("tkl_roombc", "You can't tk in this room");
+            roomtime = Config.GetUInt("tkl_roomtime", 5);
+            max = Config.GetBool("tkl_max", false);
+            maxbc = Config.GetString("tkl_maxbc", "You can't tk anymore");
+            maxtime = Config.GetUInt("tkl_maxtime", 5);
             rooms = Config.GetStringList("tkl_rooms");
             zones = Config.GetStringList("tkl_zones");
         }
@@ -59,7 +79,8 @@ namespace TKLimit
 
         public override void OnReload()
         {
-            
+            loadConfig();
+            if (!enabled) { return; }
         }
     }
 }
