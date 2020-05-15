@@ -6,8 +6,10 @@ Controls how people can TK in SCP:SL using EXILED
 | tkl_enable      | bool   | true                        | Is the plugin enabled?                                           |
 | tkl_log         | bool   | true                        | Does the plugin print when a play tks to the console?            |
 | tkl_limiter     | bool   | true                        | Does the plugin limit tk to a certain amount of times per round? |
+| tkl_revenge     | bool   | false                       | Is revenge tk allowed?                                           |
 | tkl_ban         | bool   | false                       | Does the plugin ban you if you get to the tk limit?              |
 | tkl_bantime     | int    | 0                           | How long does the plugin ban you for? (0 for kick)               |
+| tkl_banreason   | string | "TK"                        | What is the ban reason?                                          |
 | tkl_warning     | bool   | false                       | Does the plugin warn you about your last tk?                     |
 | tkl_warningbc   | string | "You have one tk left"      | What is the warning message?                                     |
 | tkl_warningtime | int    | 5                           | How long does the message last for?                              |
