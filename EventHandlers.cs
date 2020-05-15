@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EXILED;
 using EXILED.Extensions;
+using UnityEngine.Playables;
 
 namespace TKLimit
 {
@@ -17,23 +18,26 @@ namespace TKLimit
         {
             if (ev.Player.GetTeam() == ev.Attacker.GetTeam())
             {
-                if (!(Plugin.rooms.Contains(ev.Player.GetCurrentRoom().Name) | Plugin.zones.Contains(getZone(ev.Player.GetCurrentRoom().Name))))
+                bool healplr = false;
+                if (!(Plugin.revenge && ev.Player.GetPlayerId() == Plugin.lastTK[ev.Attacker.GetPlayerId()]))
                 {
-                    if (Plugin.plrTKs[ev.Attacker.GetPlayerId()] >= Plugin.tkLimit && Plugin.limiter)
-                    {
-                        if (ev.Attacker.GetPlayerId() != ev.Player.GetPlayerId())
-                        {
-                            ev.Player.AddHealth(ev.Amount);
-                        }
-                    }
+                    healplr = true;
                 }
-                else
+                if (Plugin.rooms.Contains(ev.Player.GetCurrentRoom().Name) | Plugin.zones.Contains(getZone(ev.Player.GetCurrentRoom().Name)))
                 {
-                    ev.Player.AddHealth(ev.Amount);
+                    healplr = true;
                     if (Plugin.room)
                     {
                         ev.Attacker.Broadcast(Plugin.roomtime, Plugin.roombc, false);
                     }
+                }
+                if (Plugin.plrTKs[ev.Attacker.GetPlayerId()] >= Plugin.tkLimit && Plugin.limiter)
+                {
+                    healplr = true;
+                }
+                if (ev.Attacker.GetPlayerId() != ev.Player.GetPlayerId() && healplr == true)
+                {
+                    ev.Player.AddHealth(ev.Amount);
                 }
             }
         }
@@ -44,10 +48,14 @@ namespace TKLimit
             {
                 if (ev.Killer.GetPlayerId() != ev.Player.GetPlayerId())
                 {
-                    Plugin.plrTKs[ev.Killer.GetPlayerId()]++;
+                    if (!Plugin.revenge | ev.Player.GetPlayerId() != Plugin.lastTK[ev.Killer.GetPlayerId()])
+                    {
+                        Plugin.plrTKs[ev.Killer.GetPlayerId()]++;
+                        Plugin.lastTK[ev.Player.GetPlayerId()] = ev.Killer.GetPlayerId();
+                    }
                     if (Plugin.plrTKs[ev.Killer.GetPlayerId()] >= Plugin.tkLimit && Plugin.ban)
                     {
-                        ev.Killer.BanPlayer(Plugin.bantime, "TK");
+                        ev.Killer.BanPlayer(Plugin.bantime, Plugin.banreason);
                     }
                     if (Plugin.plrTKs[ev.Killer.GetPlayerId()]+1 >= Plugin.tkLimit && Plugin.warning)
                     {
@@ -68,11 +76,13 @@ namespace TKLimit
         internal void OnPlayerJoin(PlayerJoinEvent ev)
         {
             Plugin.plrTKs.Add(ev.Player.GetPlayerId(), 0);
+            Plugin.lastTK.Add(ev.Player.GetPlayerId(), 0);
         }
 
         internal void OnPlayerLeave(PlayerLeaveEvent ev)
         {
             Plugin.plrTKs.Remove(ev.Player.GetPlayerId());
+            Plugin.lastTK.Remove(ev.Player.GetPlayerId());
         }
 
         string getZone(string room)

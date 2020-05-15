@@ -15,8 +15,10 @@ namespace TKLimit
         public static int tkLimit;
         public static bool log;
         public static bool limiter;
+        public static bool revenge;
         public static bool ban;
         public static int bantime;
+        public static string banreason;
         public static bool warning;
         public static string warningbc;
         public static uint warningtime;
@@ -29,6 +31,7 @@ namespace TKLimit
         public static List<string> rooms;
         public static List<string> zones;
         public Dictionary<int, int> plrTKs = new Dictionary<int, int>();
+        public Dictionary<int, int> lastTK = new Dictionary<int, int>();
 
         public override string getName { get; } = "TKLimit";
 
@@ -48,8 +51,10 @@ namespace TKLimit
             tkLimit = Config.GetInt("tkl_limit", 4);
             log = Config.GetBool("tkl_log", true);
             limiter = Config.GetBool("tkl_limiter", true);
+            revenge = Config.GetBool("tkl_revenge", false);
             ban = Config.GetBool("tkl_ban", false);
             bantime = Config.GetInt("tkl_bantime", 0);
+            banreason = Config.GetString("tkl_banreason", "TK");
             warning = Config.GetBool("tkl_warning", false);
             warningbc = Config.GetString("tkl_warningbc", "You have one tk left");
             warningtime = Config.GetUInt("tkl_warningtime", 5);
