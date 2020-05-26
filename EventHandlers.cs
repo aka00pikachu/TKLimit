@@ -23,7 +23,7 @@ namespace TKLimit
                 {
                     healplr = true;
                 }
-                if (Plugin.rooms.Contains(ev.Player.GetCurrentRoom().Name) | Plugin.zones.Contains(getZone(ev.Player.GetCurrentRoom().Name)))
+                if (Plugin.rooms.Contains(ev.Player.GetCurrentRoom().Name) | Plugin.zones.Contains(deleteAfter(ev.Player.GetCurrentRoom().Name, "_")))
                 {
                     healplr = true;
                     if (Plugin.room)
@@ -85,14 +85,14 @@ namespace TKLimit
             Plugin.lastTK.Remove(ev.Player.GetPlayerId());
         }
 
-        string getZone(string room)
+        string deleteAfter(string text, string stop)
         {
-            int index = room.LastIndexOf("_");
+            int index = text.LastIndexOf(stop);
             if (index > 0)
             {
-                room = room.Substring(0, index);
+                text = text.Substring(0, index);
             }
-            return room;
+            return text;
         }
     }
 }

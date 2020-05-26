@@ -10,6 +10,7 @@ namespace TKLimit
     public class Plugin : EXILED.Plugin
     {
         private EventHandlers EventHandlers;
+        private RACommandHandler raCommandHandler;
 
         public static bool enabled;
         public static int tkLimit;
@@ -41,6 +42,7 @@ namespace TKLimit
             Events.PlayerLeaveEvent -= EventHandlers.OnPlayerLeave;
             Events.PlayerHurtEvent -= EventHandlers.OnPlayerDamage;
             Events.PlayerDeathEvent -= EventHandlers.OnPlayerDeath;
+            Events.RemoteAdminCommandEvent -= raCommandHandler.OnRACommand;
 
             EventHandlers = null;
         }
@@ -75,11 +77,13 @@ namespace TKLimit
 
             Log.Info("Starting TKLimiter...");
             EventHandlers = new EventHandlers(this);
+            raCommandHandler = new RACommandHandler(this);
 
             Events.PlayerJoinEvent += EventHandlers.OnPlayerJoin;
             Events.PlayerLeaveEvent += EventHandlers.OnPlayerLeave;
             Events.PlayerHurtEvent += EventHandlers.OnPlayerDamage;
             Events.PlayerDeathEvent += EventHandlers.OnPlayerDeath;
+            Events.RemoteAdminCommandEvent += raCommandHandler.OnRACommand;
         }
 
         public override void OnReload()
