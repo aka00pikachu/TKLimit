@@ -20,3 +20,8 @@ Controls how people can TK in SCP:SL using EXILED
 | tkl_limit       | int    | 4                           | How many times can a player tk per round?                        |
 | tkl_rooms       | list   | { }                         | What rooms does the plugin disable tk in?                        |
 | tkl_zones       | list   | { }                         | What zones does the plugin disable tk in?                        |
+
+| Command         | Status  | Explanation                                                                |
+|-----------------|---------|----------------------------------------------------------------------------|
+| tkl getroom     | working | Tells you what room you're in (used for setting up rooms to disable tk in) |
+| tkl addroom     | broken  | Adds the room you're in to the tkl_rooms config                            |
